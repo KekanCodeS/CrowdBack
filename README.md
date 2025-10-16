@@ -366,6 +366,6 @@ YOLO используется в реальных системах:
 ### 6. Источники
 
 1. Crowd counting analysis using deep learning: a critical review: https://www.sciencedirect.com/science/article/pii/S187705092300220X
-2.
+2. Deep Learning Based Efficient Crowd Counting System: https://www.researchgate.net/publication/380738258_Deep_Learning_Based_Efficient_Crowd_Counting_System
 3.
 4.
