@@ -369,4 +369,5 @@ YOLO используется в реальных системах:
 2. Deep Learning Based Efficient Crowd Counting System: https://www.researchgate.net/publication/380738258_Deep_Learning_Based_Efficient_Crowd_Counting_System
 3. Crowd Counting Method Based on Convolutional Neural Network with Global Density Feature: https://www.researchgate.net/publication/334287312_Crowd_Counting_Method_Based_on_Convolutional_Neural_Network_With_Global_Density_Feature
 4. You Only Look Once: Unified, Real-Time Object Detection: https://arxiv.org/abs/1506.02640
+5. CASA-Crowd: A Context-Aware Scale Aggregation CNN-Based Crowd Counting Technique: https://ieeexplore.ieee.org/document/8935161
   
