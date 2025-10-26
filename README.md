@@ -1,5 +1,16 @@
 # 1. Введение
 
+flowchart LR
+  U[Frontend (React)] -->|POST /api/upload| API[Backend API (FastAPI)]
+  U <-->|GET /status, /result, /file| API
+  API --> Q[Queue (in-memory)]
+  API --> FS[/jobs/<job_id>/input.mp4/]
+  Q --> W[Worker]
+  W --> CV[YOLO + Tracking]
+  CV --> OUT[Analytics: IN/OUT, heatmap]
+  OUT --> ART[/jobs/<job_id>/artifacts\nsummary.json, events.csv,\ntracks.csv, heatmap.png/]
+
+
 Задача crowd/people counting — определение числа людей в зоне наблюдения и их пространственно-временного распределения — востребована в управлении потоками в зданиях, ритейле, транспорте, при обеспечении безопасности и планировании ресурсов. Классические подходы к подсчёту делятся на детекционные, регрессионные и оценку плотности (density maps). За последние годы точность и устойчивость существенно выросли благодаря глубоким CNN, новым функциям потерь и появлению крупных датасетов (ShanghaiTech, UCF-QNRF, UCSD, др.). Одновременно сохраняются инженерные вызовы: окклюзии, перспектива/масштаб, неравномерная плотность, шумы сцены.
 
 Цель проекта — спроектировать реалистичную для учебной команды систему, которая:
@@ -143,16 +154,7 @@
 
 ---
 
-flowchart LR
-    U[Пользователь (браузер)] -->|POST /api/upload| API[Backend API (FastAPI)]
-    U <-->|GET /status, /result, /file| API
-    API -->|помещает| Q[Очередь задач (in-memory)]
-    API -->|сохраняет| FS[/jobs/<job_id>/input.mp4/]
-    W[Worker (процесс/поток)] -->|читает кадры| CV[YOLO + трекинг]
-    Q --> W
-    CV --> OUT[Аналитика (IN/OUT, траектории, теплокарта)]
-    OUT --> ART[/jobs/<job_id>/artifacts:\nsummary.json\nevents.csv\ntracks.csv\nheatmap.png\npreview.mp4/]
-    API -->|отдаёт ссылки| U
+
 
 ### 3. Потоки данных и форматы
 
