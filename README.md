@@ -143,6 +143,17 @@
 
 ---
 
+flowchart LR
+    U[Пользователь (браузер)] -->|POST /api/upload| API[Backend API (FastAPI)]
+    U <-->|GET /status, /result, /file| API
+    API -->|помещает| Q[Очередь задач (in-memory)]
+    API -->|сохраняет| FS[/jobs/<job_id>/input.mp4/]
+    W[Worker (процесс/поток)] -->|читает кадры| CV[YOLO + трекинг]
+    Q --> W
+    CV --> OUT[Аналитика (IN/OUT, траектории, теплокарта)]
+    OUT --> ART[/jobs/<job_id>/artifacts:\nsummary.json\nevents.csv\ntracks.csv\nheatmap.png\npreview.mp4/]
+    API -->|отдаёт ссылки| U
+
 ### 3. Потоки данных и форматы
 
 - summary.json: сводные метрики (IN/OUT по окнам, длительность, частота кадров анализа, параметры линии/ROI).
@@ -365,9 +376,18 @@ YOLO используется в реальных системах:
 
 ### 6. Источники
 
-1. Crowd counting analysis using deep learning: a critical review: https://www.sciencedirect.com/science/article/pii/S187705092300220X
-2. Deep Learning Based Efficient Crowd Counting System: https://www.researchgate.net/publication/380738258_Deep_Learning_Based_Efficient_Crowd_Counting_System
-3. Crowd Counting Method Based on Convolutional Neural Network with Global Density Feature: https://www.researchgate.net/publication/334287312_Crowd_Counting_Method_Based_on_Convolutional_Neural_Network_With_Global_Density_Feature
-4. You Only Look Once: Unified, Real-Time Object Detection: https://arxiv.org/abs/1506.02640
-5. CASA-Crowd: A Context-Aware Scale Aggregation CNN-Based Crowd Counting Technique: https://ieeexplore.ieee.org/document/8935161
+1. Crowd counting analysis using deep learning: a critical review [Электронный ресурс] // Procedia Computer Science. – 2023. – Т. 218. – С. 2448–2458. – Режим доступа: https://www.sciencedirect.com/science/article/pii/S187705092300220X
+ (дата обращения: 14.10.2025).
+
+2. Deep Learning Based Efficient Crowd Counting System [Электронный ресурс] / S. R. Bhamare, A. Patil, P. Jagtap и др. – Режим доступа: https://www.researchgate.net/publication/380738258_Deep_Learning_Based_Efficient_Crowd_Counting_System
+ (дата обращения: 14.10.2025).
+
+3. Crowd Counting Method Based on Convolutional Neural Network with Global Density Feature [Электронный ресурс] / J. Cao, Y. Wang, Z. Zhao, F. Su. – IEEE Access. – 2019. – Режим доступа: https://www.researchgate.net/publication/334287312_Crowd_Counting_Method_Based_on_Convolutional_Neural_Network_With_Global_Density_Feature
+ (дата обращения: 14.10.2025).
+
+4. Redmon J., Divvala S., Girshick R., Farhadi A. You Only Look Once: Unified, Real-Time Object Detection [Электронный ресурс]. – arXiv preprint arXiv:1506.02640, 2016. – Режим доступа: https://arxiv.org/abs/1506.02640
+ (дата обращения: 14.10.2025).
+
+5. CASA-Crowd: A Context-Aware Scale Aggregation CNN-Based Crowd Counting Technique [Электронный ресурс] / S. Arif, A. Zafar, M. Alam и др. – IEEE Access. – 2020. – Режим доступа: https://ieeexplore.ieee.org/document/8935161
+ (дата обращения: 14.10.2025).
   
