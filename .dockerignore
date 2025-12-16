@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Data files
+data/coco/
+data/videos/*
+!data/videos/.gitkeep
+data/results/*
+data/uploads/*
+!data/results/.gitkeep
+!data/uploads/.gitkeep
+models/*
+!models/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+runs/train/*/weights/*.pt
+!runs/train/coco_person_yolov8/weights/best.pt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+

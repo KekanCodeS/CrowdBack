@@ -1,0 +1,42 @@
+config:
+  target: 'http://localhost:8000'
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm up"
+    - duration: 120
+      arrivalRate: 10
+      name: "Sustained load"
+    - duration: 60
+      arrivalRate: 20
+      name: "Spike test"
+  processor: "./processor.js"
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Health check"
+    weight: 20
+    flow:
+      - get:
+          url: "/health"
+
+  - name: "Get task status"
+    weight: 30
+    flow:
+      - get:
+          url: "/tasks/{{ taskId }}"
+
+  - name: "Get metrics"
+    weight: 30
+    flow:
+      - get:
+          url: "/metrics/summary?hours=24"
+
+  - name: "Get API metrics"
+    weight: 20
+    flow:
+      - get:
+          url: "/metrics/api?hours=1"
+
