@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python
 __pycache__/
 *.py[cod]
@@ -21,24 +22,40 @@ data/uploads/*
 !data/uploads/.gitkeep
 models/*
 !models/.gitkeep
+=======
+# Git
+.git/
+.gitignore
+>>>>>>> b950bd9446c01ec5f7f460daf2a62cec14227f52
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+<<<<<<< HEAD
 *~
 
 # Logs
 *.log
 runs/train/*/weights/*.pt
 !runs/train/coco_person_yolov8/weights/best.pt
+=======
+>>>>>>> b950bd9446c01ec5f7f460daf2a62cec14227f52
 
 # OS
 .DS_Store
 Thumbs.db
 
+<<<<<<< HEAD
 # Git
 .git/
 .gitignore
+=======
+# Data (кроме необходимых файлов)
+CrowdCounting/data/coco/
+CrowdCounting/data/videos/*
+CrowdCounting/data/results/*
+CrowdCounting/data/uploads/*
+>>>>>>> b950bd9446c01ec5f7f460daf2a62cec14227f52
 
