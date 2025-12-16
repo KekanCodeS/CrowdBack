@@ -1,0 +1,40 @@
+services:
+  backend:
+    build:
+      context: ./CrowdCounting
+      dockerfile: Dockerfile
+    container_name: crowdcounting-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./CrowdCounting/data:/app/data
+      - ./CrowdCounting/models:/app/models
+      - ./CrowdCounting/runs:/app/runs
+    environment:
+      - MODEL_PATH=/app/runs/train/coco_person_yolov8/weights/best.pt
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - USE_TRACKING=true
+      - GENERATE_HEATMAP=true
+      - FRAME_SKIP=1
+      - MAX_UPLOAD_SIZE=524288000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./people-counter-frontend-main
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:8000
+    container_name: crowdcounting-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+

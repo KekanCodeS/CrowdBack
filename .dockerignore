@@ -1,0 +1,20 @@
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (кроме необходимых файлов)
+CrowdCounting/data/coco/
+CrowdCounting/data/videos/*
+CrowdCounting/data/results/*
+CrowdCounting/data/uploads/*
+
